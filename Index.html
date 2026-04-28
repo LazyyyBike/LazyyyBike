@@ -3,353 +3,427 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🐾 Rechner</title>
+  <title>ðŸ¾ Rechner</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body.furry {
-      --bg1: #fdf3e7; --bg2: #fde68a55; --bg3: #f9a8d455;
-      --title-color: #8b5e3c; --title-shadow: #f4a26155; --subtitle-color: #a0704a;
-      --ear-color: #8b5e3c; --ear-inner: #f9a8d4;
-      --calc-bg1: #fff8f0; --calc-bg2: #fef3e2; --calc-border: #8b5e3c;
-      --display-bg1: #3d1f0a; --display-bg2: #6b3a1f;
-      --display-expr: #c9956a; --display-result: #fdf3e7;
-      --num-bg1: #fff4e8; --num-bg2: #ffe8cc; --num-color: #3d1f0a;
-      --num-shadow: #d4955a; --num-hover1: #fff8f0; --num-hover2: #ffd8a8;
-      --op-bg1: #f4a261; --op-bg2: #e07d3a; --op-shadow: #b5581a; --op-hover1: #f5b068;
-      --eq-bg1: #8b5e3c; --eq-bg2: #6b3a1f; --eq-shadow: #2d1205; --eq-color: #fdf3e7;
-      --clear-bg1: #fda4af; --clear-bg2: #fb7185; --clear-shadow: #d4405a;
-      --special-bg1: #c4b5fd; --special-bg2: #a78bfa; --special-shadow: #7c3aed;
+      --bg1: #fdf3e7;
+      --bg2: #fde68a55;
+      --bg3: #f9a8d455;
+      --title-color: #8b5e3c;
+      --title-shadow: #f4a26155;
+      --subtitle-color: #a0704a;
+      --ear-color: #8b5e3c;
+      --ear-inner: #f9a8d4;
+      --calc-bg1: #fff8f0;
+      --calc-bg2: #fef3e2;
+      --calc-border: #8b5e3c;
+      --display-bg1: #3d1f0a;
+      --display-bg2: #6b3a1f;
+      --display-expr: #c9956a;
+      --display-result: #fdf3e7;
+      --num-bg1: #fff4e8;
+      --num-bg2: #ffe8cc;
+      --num-color: #3d1f0a;
+      --num-shadow: #d4955a;
+      --num-hover1: #fff8f0;
+      --num-hover2: #ffd8a8;
+      --op-bg1: #f4a261;
+      --op-bg2: #e07d3a;
+      --op-shadow: #b5581a;
+      --op-hover1: #f5b068;
+      --eq-bg1: #8b5e3c;
+      --eq-bg2: #6b3a1f;
+      --eq-shadow: #2d1205;
+      --eq-color: #fdf3e7;
+      --clear-bg1: #fda4af;
+      --clear-bg2: #fb7185;
+      --clear-shadow: #d4405a;
+      --special-bg1: #c4b5fd;
+      --special-bg2: #a78bfa;
+      --special-shadow: #7c3aed;
       --footer-color: #b07848;
       --toggle-bg: linear-gradient(135deg, #f472b6, #a78bfa);
-      --demon-accent: #f4a261; --demon-accent2: #8b5e3c;
-      --demon-card: #fff4e8; --demon-card-border: #f4a26155;
-      --demon-rank: #8b5e3c; --demon-name-color: #3d1f0a;
+      --nose-show: block;
     }
+
     body.femboy {
-      --bg1: #fff0f8; --bg2: #fce7f366; --bg3: #e0e7ff55;
-      --title-color: #be185d; --title-shadow: #f9a8d455; --subtitle-color: #db2777;
-      --ear-color: #f472b6; --ear-inner: #e0e7ff;
-      --calc-bg1: #fff5fb; --calc-bg2: #fce7f3; --calc-border: #f472b6;
-      --display-bg1: #831843; --display-bg2: #9d174d;
-      --display-expr: #f9a8d4; --display-result: #fff0f8;
-      --num-bg1: #fdf2f8; --num-bg2: #fce7f3; --num-color: #831843;
-      --num-shadow: #f472b6; --num-hover1: #fdf4ff; --num-hover2: #fae8ff;
-      --op-bg1: #f472b6; --op-bg2: #ec4899; --op-shadow: #be185d; --op-hover1: #f9a8d4;
-      --eq-bg1: #a855f7; --eq-bg2: #9333ea; --eq-shadow: #6b21a8; --eq-color: #fdf4ff;
-      --clear-bg1: #a5f3fc; --clear-bg2: #67e8f9; --clear-shadow: #0e7490;
-      --special-bg1: #c4b5fd; --special-bg2: #a78bfa; --special-shadow: #7c3aed;
+      --bg1: #fff0f8;
+      --bg2: #fce7f366;
+      --bg3: #e0e7ff55;
+      --title-color: #be185d;
+      --title-shadow: #f9a8d455;
+      --subtitle-color: #db2777;
+      --ear-color: #f472b6;
+      --ear-inner: #e0e7ff;
+      --calc-bg1: #fff5fb;
+      --calc-bg2: #fce7f3;
+      --calc-border: #f472b6;
+      --display-bg1: #831843;
+      --display-bg2: #9d174d;
+      --display-expr: #f9a8d4;
+      --display-result: #fff0f8;
+      --num-bg1: #fdf2f8;
+      --num-bg2: #fce7f3;
+      --num-color: #831843;
+      --num-shadow: #f472b6;
+      --num-hover1: #fdf4ff;
+      --num-hover2: #fae8ff;
+      --op-bg1: #f472b6;
+      --op-bg2: #ec4899;
+      --op-shadow: #be185d;
+      --op-hover1: #f9a8d4;
+      --eq-bg1: #a855f7;
+      --eq-bg2: #9333ea;
+      --eq-shadow: #6b21a8;
+      --eq-color: #fdf4ff;
+      --clear-bg1: #a5f3fc;
+      --clear-bg2: #67e8f9;
+      --clear-shadow: #0e7490;
+      --special-bg1: #c4b5fd;
+      --special-bg2: #a78bfa;
+      --special-shadow: #7c3aed;
       --footer-color: #db2777;
       --toggle-bg: linear-gradient(135deg, #8b5e3c, #f4a261);
-      --demon-accent: #f472b6; --demon-accent2: #9333ea;
-      --demon-card: #fdf2f8; --demon-card-border: #f472b655;
-      --demon-rank: #be185d; --demon-name-color: #831843;
+      --nose-show: none;
     }
 
     body {
-      min-height: 100vh; background: var(--bg1);
-      background-image: radial-gradient(circle at 20% 20%, var(--bg2) 0%, transparent 50%), radial-gradient(circle at 80% 80%, var(--bg3) 0%, transparent 50%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      font-family: 'Nunito', sans-serif; padding: 20px; transition: background 0.5s;
+      min-height: 100vh;
+      background: var(--bg1);
+      background-image:
+        radial-gradient(circle at 20% 20%, var(--bg2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, var(--bg3) 0%, transparent 50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Nunito', sans-serif;
+      padding: 20px;
+      transition: background 0.5s;
     }
 
-    .bg-float { position: fixed; pointer-events: none; opacity: 0.07; font-size: 2.8rem; animation: floatUp linear infinite; z-index: 0; }
-    @keyframes floatUp { 0% { transform: translateY(110vh) rotate(0deg); } 100% { transform: translateY(-10vh) rotate(360deg); } }
-
-    /* ════════════════════════════
-       DEMONLIST POPUP
-    ════════════════════════════ */
-    #demonBtn {
-      position: fixed; top: 14px; left: 14px; z-index: 200;
-      background: linear-gradient(135deg, #1a1a2e, #16213e);
-      border: 2px solid var(--demon-accent);
-      border-radius: 999px; padding: 9px 16px;
-      font-family: 'Fredoka One', cursive; font-size: 0.92rem;
-      color: var(--demon-accent); cursor: pointer;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.3), 0 0 12px var(--demon-accent)44;
-      transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
-      display: flex; align-items: center; gap: 6px; white-space: nowrap;
+    .bg-float {
+      position: fixed; pointer-events: none;
+      opacity: 0.07; font-size: 2.8rem;
+      animation: floatUp linear infinite; z-index: 0;
     }
-    #demonBtn:hover { transform: scale(1.07); box-shadow: 0 6px 24px rgba(0,0,0,0.4), 0 0 20px var(--demon-accent)66; }
-    #demonBtn:active { transform: scale(0.94); }
-
-    #demonPanel {
-      position: fixed; top: 60px; left: 14px; z-index: 199;
-      width: 310px; max-height: 70vh;
-      background: linear-gradient(160deg, #0f0f1a, #1a1a2e);
-      border: 2px solid var(--demon-accent);
-      border-radius: 20px; overflow: hidden;
-      box-shadow: 0 16px 50px rgba(0,0,0,0.5), 0 0 30px var(--demon-accent)22;
-      display: none; flex-direction: column;
-      animation: slideIn 0.3s cubic-bezier(.34,1.56,.64,1);
-    }
-    #demonPanel.open { display: flex; }
-    @keyframes slideIn { 0% { transform: scale(0.85) translateY(-10px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
-
-    .demon-header {
-      padding: 14px 16px 10px;
-      background: linear-gradient(135deg, var(--demon-accent)22, transparent);
-      border-bottom: 1px solid var(--demon-accent)44;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-shrink: 0;
-    }
-    .demon-header-left { display: flex; flex-direction: column; gap: 2px; }
-    .demon-title {
-      font-family: 'Fredoka One', cursive; font-size: 1.05rem; color: var(--demon-accent);
-      display: flex; align-items: center; gap: 6px;
-    }
-    .demon-subtitle { font-size: 0.72rem; color: #8888aa; font-weight: 700; }
-
-    .demon-tabs {
-      display: flex; gap: 6px; flex-shrink: 0;
-    }
-    .demon-tab {
-      border: 1px solid #ffffff22; border-radius: 8px;
-      padding: 4px 10px; font-family: 'Fredoka One', cursive;
-      font-size: 0.75rem; cursor: pointer; transition: all 0.2s;
-      background: transparent; color: #8888aa;
-    }
-    .demon-tab.active { background: var(--demon-accent); color: #1a1a2e; border-color: var(--demon-accent); }
-    .demon-tab:hover:not(.active) { border-color: var(--demon-accent)88; color: var(--demon-accent); }
-
-    .demon-search {
-      margin: 10px 12px 0; flex-shrink: 0;
-      background: #ffffff0f; border: 1px solid #ffffff22;
-      border-radius: 10px; padding: 7px 12px;
-      font-family: 'Nunito', sans-serif; font-size: 0.82rem;
-      color: white; outline: none; width: calc(100% - 24px);
-      transition: border-color 0.2s;
-    }
-    .demon-search::placeholder { color: #666688; }
-    .demon-search:focus { border-color: var(--demon-accent)88; }
-
-    .demon-list {
-      overflow-y: auto; flex: 1; padding: 8px;
-      scrollbar-width: thin; scrollbar-color: var(--demon-accent)44 transparent;
-    }
-    .demon-list::-webkit-scrollbar { width: 4px; }
-    .demon-list::-webkit-scrollbar-thumb { background: var(--demon-accent)44; border-radius: 4px; }
-
-    .demon-card {
-      display: flex; align-items: center; gap: 10px;
-      padding: 9px 10px; border-radius: 12px; margin-bottom: 5px;
-      background: #ffffff08; border: 1px solid #ffffff0a;
-      cursor: pointer; transition: all 0.18s;
-      text-decoration: none;
-    }
-    .demon-card:hover { background: var(--demon-accent)18; border-color: var(--demon-accent)44; transform: translateX(3px); }
-
-    .demon-rank-badge {
-      font-family: 'Fredoka One', cursive; font-size: 0.85rem;
-      color: var(--demon-accent); min-width: 30px; text-align: right;
-      opacity: 0.9;
-    }
-    .demon-rank-badge.top3 { color: #ffd700; text-shadow: 0 0 8px #ffd70088; }
-
-    .demon-thumbnail {
-      width: 44px; height: 44px; border-radius: 8px;
-      object-fit: cover; background: #ffffff11; flex-shrink: 0;
-      border: 1px solid #ffffff11;
+    @keyframes floatUp {
+      0%   { transform: translateY(110vh) rotate(0deg); }
+      100% { transform: translateY(-10vh) rotate(360deg); }
     }
 
-    .demon-info { flex: 1; min-width: 0; }
-    .demon-name {
-      font-family: 'Fredoka One', cursive; font-size: 0.92rem;
-      color: #eeeeff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .demon-meta { font-size: 0.7rem; color: #8888aa; font-weight: 700; margin-top: 1px; }
-
-    .demon-points {
-      font-family: 'Fredoka One', cursive; font-size: 0.78rem;
-      color: var(--demon-accent); opacity: 0.85; flex-shrink: 0;
-    }
-
-    .demon-status {
-      text-align: center; padding: 20px;
-      font-family: 'Fredoka One', cursive; color: #8888aa; font-size: 0.9rem;
-    }
-
-    .demon-footer {
-      padding: 8px 12px; border-top: 1px solid #ffffff0f; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .demon-page-info { font-size: 0.72rem; color: #8888aa; font-weight: 700; }
-    .demon-page-btns { display: flex; gap: 6px; }
-    .demon-page-btn {
-      border: 1px solid #ffffff22; border-radius: 8px;
-      padding: 4px 10px; font-family: 'Fredoka One', cursive;
-      font-size: 0.78rem; cursor: pointer; background: transparent;
-      color: #aaaacc; transition: all 0.2s;
-    }
-    .demon-page-btn:hover:not(:disabled) { border-color: var(--demon-accent); color: var(--demon-accent); }
-    .demon-page-btn:disabled { opacity: 0.3; cursor: default; }
-
-    .close-demon { background: none; border: none; color: #8888aa; cursor: pointer; font-size: 1.1rem; padding: 2px 6px; border-radius: 6px; transition: color 0.2s; }
-    .close-demon:hover { color: #eeeeff; }
-
-    /* ════ THEME TOGGLE ════ */
+    /* â”€â”€ Toggle button â”€â”€ */
     .theme-toggle {
-      position: relative; z-index: 10; margin-bottom: 18px;
-      background: var(--toggle-bg); border: none; border-radius: 999px;
-      padding: 11px 26px; font-family: 'Fredoka One', cursive;
-      font-size: 1rem; color: white; cursor: pointer;
+      position: relative; z-index: 10;
+      margin-bottom: 18px;
+      background: var(--toggle-bg);
+      border: none; border-radius: 999px;
+      padding: 11px 26px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem; color: white;
+      cursor: pointer;
       box-shadow: 0 4px 18px rgba(0,0,0,0.18);
       transition: all 0.35s cubic-bezier(.34,1.56,.64,1);
+      letter-spacing: 0.5px;
     }
     .theme-toggle:hover { transform: scale(1.07); }
     .theme-toggle:active { transform: scale(0.94); }
 
-    /* ════ TITLE ════ */
-    .title-area { text-align: center; margin-bottom: 20px; position: relative; z-index: 1; }
-    .title-area h1 { font-family: 'Fredoka One', cursive; font-size: 2.6rem; color: var(--title-color); text-shadow: 3px 3px 0 var(--title-shadow); transition: color 0.4s, text-shadow 0.4s; }
-    .title-area p { color: var(--subtitle-color); font-size: 0.95rem; font-weight: 700; margin-top: 4px; transition: color 0.4s; }
+    .title-area {
+      text-align: center; margin-bottom: 20px;
+      position: relative; z-index: 1;
+    }
+    .title-area h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.6rem;
+      color: var(--title-color);
+      text-shadow: 3px 3px 0 var(--title-shadow);
+      transition: color 0.4s, text-shadow 0.4s;
+    }
+    .title-area p {
+      color: var(--subtitle-color);
+      font-size: 0.95rem; font-weight: 700;
+      margin-top: 4px; transition: color 0.4s;
+    }
 
-    /* ════ EARS ════ */
-    .ears { display: flex; justify-content: space-between; width: 290px; margin-bottom: -18px; position: relative; z-index: 2; }
-    .ear { width: 56px; height: 56px; background: var(--ear-color); border-radius: 50% 50% 0 50%; position: relative; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: background 0.4s; }
+    .ears {
+      display: flex; justify-content: space-between;
+      width: 290px; margin-bottom: -18px;
+      position: relative; z-index: 2;
+    }
+    .ear {
+      width: 56px; height: 56px;
+      background: var(--ear-color);
+      border-radius: 50% 50% 0 50%;
+      position: relative;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transition: background 0.4s;
+    }
     .ear.right { border-radius: 50% 50% 50% 0; }
-    .ear::after { content: ''; position: absolute; width: 32px; height: 32px; background: var(--ear-inner); border-radius: 50% 50% 0 50%; top: 10px; left: 10px; transition: background 0.4s; }
+    .ear::after {
+      content: ''; position: absolute;
+      width: 32px; height: 32px;
+      background: var(--ear-inner);
+      border-radius: 50% 50% 0 50%;
+      top: 10px; left: 10px;
+      transition: background 0.4s;
+    }
     .ear.right::after { border-radius: 50% 50% 50% 0; }
 
-    /* ════ CALC BODY ════ */
-    .calculator { background: linear-gradient(145deg, var(--calc-bg1), var(--calc-bg2)); border-radius: 28px; padding: 24px; width: 290px; box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 4px var(--calc-border), inset 0 1px 0 rgba(255,255,255,0.8); position: relative; z-index: 1; transition: background 0.4s, box-shadow 0.4s; }
-    .nose { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); font-size: 1.4rem; line-height: 1; }
-    .display { background: linear-gradient(135deg, var(--display-bg1), var(--display-bg2)); border-radius: 16px; padding: 14px 16px; margin-bottom: 16px; min-height: 86px; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end; box-shadow: inset 0 4px 16px rgba(0,0,0,0.4); overflow: hidden; position: relative; transition: background 0.4s; }
-    .display .expression { color: var(--display-expr); font-size: 0.82rem; font-weight: 600; min-height: 16px; word-break: break-all; transition: color 0.4s; }
-    .display .result { color: var(--display-result); font-family: 'Fredoka One', cursive; font-size: 2.1rem; word-break: break-all; transition: transform 0.1s, color 0.4s; }
+    .calculator {
+      background: linear-gradient(145deg, var(--calc-bg1), var(--calc-bg2));
+      border-radius: 28px; padding: 24px; width: 290px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 4px var(--calc-border), inset 0 1px 0 rgba(255,255,255,0.8);
+      position: relative; z-index: 1;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+
+    .nose {
+      position: absolute; top: -13px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.4rem; display: var(--nose-show);
+      line-height: 1;
+    }
+
+    .display {
+      background: linear-gradient(135deg, var(--display-bg1), var(--display-bg2));
+      border-radius: 16px; padding: 14px 16px;
+      margin-bottom: 16px; min-height: 86px;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; align-items: flex-end;
+      box-shadow: inset 0 4px 16px rgba(0,0,0,0.4);
+      overflow: hidden; position: relative;
+      transition: background 0.4s;
+    }
+    .display .expression {
+      color: var(--display-expr);
+      font-size: 0.82rem; font-weight: 600;
+      min-height: 16px; word-break: break-all;
+      transition: color 0.4s;
+    }
+    .display .result {
+      color: var(--display-result);
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.1rem; word-break: break-all;
+      transition: transform 0.1s, color 0.4s;
+    }
     .display .result.pop { transform: scale(1.06); }
+
     .buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; }
-    button.calc-btn { border: none; border-radius: 13px; font-family: 'Fredoka One', cursive; font-size: 1.25rem; cursor: pointer; height: 55px; transition: all 0.12s cubic-bezier(.34,1.56,.64,1); outline: none; }
+
+    button.calc-btn {
+      border: none; border-radius: 13px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.25rem; cursor: pointer; height: 55px;
+      transition: all 0.12s cubic-bezier(.34,1.56,.64,1); outline: none;
+    }
     button.calc-btn:active { transform: scale(0.90) translateY(2px); }
-    .btn-num { background: linear-gradient(145deg, var(--num-bg1), var(--num-bg2)); color: var(--num-color); box-shadow: 0 4px 0 var(--num-shadow), 0 5px 10px rgba(0,0,0,0.08); transition: background 0.4s, color 0.4s, box-shadow 0.4s, transform 0.12s; }
+
+    .btn-num {
+      background: linear-gradient(145deg, var(--num-bg1), var(--num-bg2));
+      color: var(--num-color);
+      box-shadow: 0 4px 0 var(--num-shadow), 0 5px 10px rgba(0,0,0,0.08);
+      transition: background 0.4s, color 0.4s, box-shadow 0.4s, transform 0.12s;
+    }
     .btn-num:hover { background: linear-gradient(145deg, var(--num-hover1), var(--num-hover2)); transform: translateY(-2px); }
-    .btn-op { background: linear-gradient(145deg, var(--op-bg1), var(--op-bg2)); color: white; box-shadow: 0 4px 0 var(--op-shadow), 0 5px 10px rgba(0,0,0,0.12); transition: background 0.4s, box-shadow 0.4s, transform 0.12s; }
+
+    .btn-op {
+      background: linear-gradient(145deg, var(--op-bg1), var(--op-bg2));
+      color: white; box-shadow: 0 4px 0 var(--op-shadow), 0 5px 10px rgba(0,0,0,0.12);
+      transition: background 0.4s, box-shadow 0.4s, transform 0.12s;
+    }
     .btn-op:hover { background: linear-gradient(145deg, var(--op-hover1), var(--op-bg1)); transform: translateY(-2px); }
-    .btn-eq { background: linear-gradient(145deg, var(--eq-bg1), var(--eq-bg2)); color: var(--eq-color); font-size: 1.5rem; box-shadow: 0 4px 0 var(--eq-shadow), 0 5px 10px rgba(0,0,0,0.15); transition: background 0.4s, color 0.4s, box-shadow 0.4s, transform 0.12s; }
+
+    .btn-eq {
+      background: linear-gradient(145deg, var(--eq-bg1), var(--eq-bg2));
+      color: var(--eq-color); font-size: 1.5rem;
+      box-shadow: 0 4px 0 var(--eq-shadow), 0 5px 10px rgba(0,0,0,0.15);
+      transition: background 0.4s, color 0.4s, box-shadow 0.4s, transform 0.12s;
+    }
     .btn-eq:hover { transform: translateY(-2px); }
-    .btn-clear { background: linear-gradient(145deg, var(--clear-bg1), var(--clear-bg2)); color: white; font-size: 0.95rem; box-shadow: 0 4px 0 var(--clear-shadow), 0 5px 10px rgba(0,0,0,0.1); transition: background 0.4s, box-shadow 0.4s, transform 0.12s; }
+
+    .btn-clear {
+      background: linear-gradient(145deg, var(--clear-bg1), var(--clear-bg2));
+      color: white; font-size: 0.95rem;
+      box-shadow: 0 4px 0 var(--clear-shadow), 0 5px 10px rgba(0,0,0,0.1);
+      transition: background 0.4s, box-shadow 0.4s, transform 0.12s;
+    }
     .btn-clear:hover { transform: translateY(-2px); }
-    .btn-special { background: linear-gradient(145deg, var(--special-bg1), var(--special-bg2)); color: white; font-size: 0.95rem; box-shadow: 0 4px 0 var(--special-shadow), 0 5px 10px rgba(0,0,0,0.1); transition: background 0.4s, box-shadow 0.4s, transform 0.12s; }
+
+    .btn-special {
+      background: linear-gradient(145deg, var(--special-bg1), var(--special-bg2));
+      color: white; font-size: 0.95rem;
+      box-shadow: 0 4px 0 var(--special-shadow), 0 5px 10px rgba(0,0,0,0.1);
+      transition: background 0.4s, box-shadow 0.4s, transform 0.12s;
+    }
     .btn-special:hover { transform: translateY(-2px); }
+
     .btn-zero { grid-column: span 2; }
-    .tail { position: absolute; bottom: -28px; right: 28px; font-size: 1.9rem; animation: wiggle 2s ease-in-out infinite; transform-origin: left center; }
-    @keyframes wiggle { 0%, 100% { transform: rotate(-15deg); } 50% { transform: rotate(15deg); } }
-    .burst { position: fixed; font-size: 1.7rem; pointer-events: none; animation: burstAnim 0.55s ease-out forwards; z-index: 999; }
-    @keyframes burstAnim { 0% { transform: scale(0) rotate(-20deg); opacity: 1; } 60% { transform: scale(1.3) rotate(10deg); opacity: 1; } 100% { transform: scale(1.6) rotate(5deg) translateY(-28px); opacity: 0; } }
-    .footer { margin-top: 22px; color: var(--footer-color); font-size: 0.8rem; font-weight: 700; z-index: 1; transition: color 0.4s; }
+
+    .tail {
+      position: absolute; bottom: -28px; right: 28px;
+      font-size: 1.9rem;
+      animation: wiggle 2s ease-in-out infinite;
+      transform-origin: left center;
+    }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-15deg); }
+      50%       { transform: rotate(15deg); }
+    }
+
+    .burst {
+      position: fixed; font-size: 1.7rem;
+      pointer-events: none;
+      animation: burstAnim 0.55s ease-out forwards; z-index: 999;
+    }
+    @keyframes burstAnim {
+      0%   { transform: scale(0) rotate(-20deg); opacity: 1; }
+      60%  { transform: scale(1.3) rotate(10deg); opacity: 1; }
+      100% { transform: scale(1.6) rotate(5deg) translateY(-28px); opacity: 0; }
+    }
+
+    .footer {
+      margin-top: 22px; color: var(--footer-color);
+      font-size: 0.8rem; font-weight: 700; z-index: 1;
+      transition: color 0.4s;
+    }
   </style>
 </head>
 <body class="furry">
 
-  <span class="bg-float" id="f1" style="left:5%;  animation-duration:12s; animation-delay:0s">🐾</span>
-  <span class="bg-float" id="f2" style="left:22%; animation-duration:9s;  animation-delay:3s">🐾</span>
-  <span class="bg-float" id="f3" style="left:50%; animation-duration:14s; animation-delay:1s">🐾</span>
-  <span class="bg-float" id="f4" style="left:75%; animation-duration:10s; animation-delay:5s">🐾</span>
-  <span class="bg-float" id="f5" style="left:90%; animation-duration:11s; animation-delay:2s">🐾</span>
+  <span class="bg-float" id="f1" style="left:5%;  animation-duration:12s; animation-delay:0s">ðŸ¾</span>
+  <span class="bg-float" id="f2" style="left:22%; animation-duration:9s;  animation-delay:3s">ðŸ¾</span>
+  <span class="bg-float" id="f3" style="left:50%; animation-duration:14s; animation-delay:1s">ðŸ¾</span>
+  <span class="bg-float" id="f4" style="left:75%; animation-duration:10s; animation-delay:5s">ðŸ¾</span>
+  <span class="bg-float" id="f5" style="left:90%; animation-duration:11s; animation-delay:2s">ðŸ¾</span>
 
-  <!-- Demonlist Button -->
-  <button id="demonBtn" onclick="toggleDemon()">💀 Demonlist</button>
-
-  <!-- Demonlist Panel -->
-  <div id="demonPanel">
-    <div class="demon-header">
-      <div class="demon-header-left">
-        <div class="demon-title">💀 Pointercrate Demonlist</div>
-        <div class="demon-subtitle" id="demonSubtitle">Lädt...</div>
-      </div>
-      <button class="close-demon" onclick="toggleDemon()">✕</button>
-    </div>
-
-    <!-- Tabs -->
-    <div style="display:flex;gap:6px;padding:10px 12px 0;flex-shrink:0;">
-      <button class="demon-tab active" id="tab-main" onclick="switchTab('main')">Main List</button>
-      <button class="demon-tab" id="tab-extended" onclick="switchTab('extended')">Extended</button>
-    </div>
-
-    <!-- Search -->
-    <input class="demon-search" id="demonSearch" placeholder="🔍 Demon suchen..." oninput="filterDemons()" />
-
-    <!-- List -->
-    <div class="demon-list" id="demonList">
-      <div class="demon-status">💀 Lädt Demonlist...</div>
-    </div>
-
-    <!-- Footer pagination -->
-    <div class="demon-footer">
-      <div class="demon-page-info" id="demonPageInfo">–</div>
-      <div class="demon-page-btns">
-        <button class="demon-page-btn" id="prevBtn" onclick="changePage(-1)" disabled>◀ Prev</button>
-        <button class="demon-page-btn" id="nextBtn" onclick="changePage(1)">Next ▶</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Theme toggle -->
-  <button class="theme-toggle" id="toggleBtn" onclick="toggleTheme()">🎀 Femboy Mode</button>
+  <button class="theme-toggle" id="toggleBtn" onclick="toggleTheme()">ðŸŽ€ Femboy Mode</button>
 
   <div class="title-area">
-    <h1 id="mainTitle">🐾 Furry Rechner</h1>
-    <p  id="mainSub">Rechnen macht Spaß, arf arf! 🦊</p>
+    <h1 id="mainTitle">ðŸ¾ Furry Rechner</h1>
+    <p  id="mainSub">Rechnen macht SpaÃŸ, arf arf! ðŸ¦Š</p>
   </div>
 
-  <div class="ears"><div class="ear left"></div><div class="ear right"></div></div>
+  <div class="ears">
+    <div class="ear left"></div>
+    <div class="ear right"></div>
+  </div>
 
   <div class="calculator">
-    <div class="nose" id="nose">🐽</div>
+    <div class="nose" id="nose">ðŸ½</div>
+
     <div class="display">
       <div class="expression" id="expression"></div>
       <div class="result"     id="result">0</div>
     </div>
+
     <div class="buttons">
       <button class="calc-btn btn-clear"   onclick="clearAll(event)">AC</button>
-      <button class="calc-btn btn-special" onclick="toggleSign(event)">+/−</button>
+      <button class="calc-btn btn-special" onclick="toggleSign(event)">+/âˆ’</button>
       <button class="calc-btn btn-special" onclick="percent(event)">%</button>
-      <button class="calc-btn btn-op"      onclick="setOp('/',event)">÷</button>
+      <button class="calc-btn btn-op"      onclick="setOp('/',event)">Ã·</button>
+
       <button class="calc-btn btn-num" onclick="num('7',event)">7</button>
       <button class="calc-btn btn-num" onclick="num('8',event)">8</button>
       <button class="calc-btn btn-num" onclick="num('9',event)">9</button>
-      <button class="calc-btn btn-op"  onclick="setOp('*',event)">×</button>
+      <button class="calc-btn btn-op"  onclick="setOp('*',event)">Ã—</button>
+
       <button class="calc-btn btn-num" onclick="num('4',event)">4</button>
       <button class="calc-btn btn-num" onclick="num('5',event)">5</button>
       <button class="calc-btn btn-num" onclick="num('6',event)">6</button>
-      <button class="calc-btn btn-op"  onclick="setOp('-',event)">−</button>
+      <button class="calc-btn btn-op"  onclick="setOp('-',event)">âˆ’</button>
+
       <button class="calc-btn btn-num" onclick="num('1',event)">1</button>
       <button class="calc-btn btn-num" onclick="num('2',event)">2</button>
       <button class="calc-btn btn-num" onclick="num('3',event)">3</button>
       <button class="calc-btn btn-op"  onclick="setOp('+',event)">+</button>
+
       <button class="calc-btn btn-num btn-zero" onclick="num('0',event)">0</button>
       <button class="calc-btn btn-num"          onclick="dot(event)">.</button>
-      <button class="calc-btn btn-eq"           onclick="calculate(event)">＝</button>
+      <button class="calc-btn btn-eq"           onclick="calculate(event)">ï¼</button>
     </div>
-    <div class="tail" id="tail">🦊</div>
+
+    <div class="tail" id="tail">ðŸ¦Š</div>
   </div>
 
-  <div class="footer" id="footer">Made with 🐾 for furry fans</div>
+  <div class="footer" id="footer">Made with ðŸ¾ for furry fans</div>
 
   <script>
-    // ══ Demonlist ══════════════════════════════════════
-    let panelOpen = false;
-    let allDemons = [];
-    let filteredDemons = [];
-    let currentTab = 'main'; // 'main' = pos 1-75, 'extended' = 76-150
-    let currentPage = 0;
-    const PAGE_SIZE = 20;
-    let loaded = false;
+    let isFemboy = false;
 
-    function toggleDemon() {
-      panelOpen = !panelOpen;
-      document.getElementById('demonPanel').classList.toggle('open', panelOpen);
-      if (panelOpen && !loaded) fetchDemons();
+    const T = {
+      furry:  { btn:'ðŸŽ€ Femboy Mode', title:'ðŸ¾ Furry Rechner', sub:'Rechnen macht SpaÃŸ, arf arf! ðŸ¦Š', tail:'ðŸ¦Š', nose:'ðŸ½', footer:'Made with ðŸ¾ for furry fans',  floats:['ðŸ¾','ðŸ¦Š','ðŸº','ðŸ¦','ðŸ±'], bursts:['ðŸ¾','ðŸ¦Š','ðŸº','ðŸ¦','ðŸ±'] },
+      femboy: { btn:'ðŸ¾ Furry Mode',  title:'ðŸŽ€ Femboy Rechner', sub:'Kawaii math time~ ðŸ’•âœ¨',          tail:'ðŸŽ€', nose:'ðŸŽ€', footer:'Made with ðŸ’• for femboy fans', floats:['ðŸŽ€','ðŸ’•','âœ¨','ðŸŒ¸','ðŸ’œ'], bursts:['ðŸŽ€','ðŸ’•','âœ¨','ðŸŒ¸','ðŸ’œ','ðŸ«§'] }
+    };
+
+    function toggleTheme() {
+      isFemboy = !isFemboy;
+      const t = isFemboy ? T.femboy : T.furry;
+      document.body.className = isFemboy ? 'femboy' : 'furry';
+      document.getElementById('toggleBtn').textContent = t.btn;
+      document.getElementById('mainTitle').textContent = t.title;
+      document.getElementById('mainSub').textContent   = t.sub;
+      document.getElementById('tail').textContent      = t.tail;
+      document.getElementById('nose').textContent      = t.nose;
+      document.getElementById('footer').textContent    = t.footer;
+      ['f1','f2','f3','f4','f5'].forEach((id,i) =>
+        document.getElementById(id).textContent = t.floats[i % t.floats.length]);
     }
 
-    async function fetchDemons() {
-      const list = document.getElementById('demonList');
-      list.innerHTML = '<div class="demon-status">💀 Lädt Demonlist...</div>';
-      try {
-        // Fetch top 150 (two requests of 75 each)
-        const [r1, r2] = await Promise.all([
-          fetch('https://pointercrate.com/api/v2/demons/listed/?limit=75&after=0', { headers: { 'Accept': 'application/json' } }),
-          fetch('https://pointercrate.com/api/v2/demons/listed/?limit=75&after=75', { headers: { 'Accept': 'application/json' } })
-        ]);
-        const d
+    // â”€â”€ Calc logic â”€â”€
+    let current='0', stored=null, operator=null, justCalc=false, expression='';
+    const resultEl=document.getElementById('result'), exprEl=document.getElementById('expression');
+
+    function updateDisplay(){ resultEl.textContent=current; exprEl.textContent=expression; }
+
+    function num(n,e){ spawn(e); if(justCalc){current=n;expression='';justCalc=false;}else current=current==='0'?n:current+n; updateDisplay(); }
+    function dot(e){ spawn(e); if(justCalc){current='0.';justCalc=false;}else if(!current.includes('.'))current+='.'; updateDisplay(); }
+    function setOp(op,e){
+      spawn(e);
+      const sym={'+':'+','-':'âˆ’','*':'Ã—','/':'Ã·'};
+      if(stored!==null&&!justCalc) stored=parseFloat(eval(stored+operator+current).toFixed(10));
+      else stored=parseFloat(current);
+      operator=op; expression=stored+' '+sym[op]; justCalc=true; updateDisplay();
+    }
+    function calculate(e){
+      spawn(e);
+      if(stored===null||operator===null)return;
+      const sym={'+':'+','-':'âˆ’','*':'Ã—','/':'Ã·'}, cur=parseFloat(current);
+      if(operator==='/'&&cur===0){current='OwO Fehler!';stored=null;operator=null;expression='';updateDisplay();return;}
+      const res=parseFloat(eval(stored+operator+cur).toFixed(10));
+      expression=stored+' '+sym[operator]+' '+cur+' =';
+      current=String(res); stored=null; operator=null; justCalc=true;
+      resultEl.classList.add('pop'); setTimeout(()=>resultEl.classList.remove('pop'),150);
+      updateDisplay();
+    }
+    function clearAll(e){ spawn(e); current='0';stored=null;operator=null;justCalc=false;expression=''; updateDisplay(); }
+    function toggleSign(e){ spawn(e); current=String(parseFloat(current)*-1); updateDisplay(); }
+    function percent(e){ spawn(e); current=String(parseFloat(current)/100); updateDisplay(); }
+
+    function spawn(e){
+      if(!e)return;
+      const t=isFemboy?T.femboy:T.furry;
+      const emoji=t.bursts[Math.floor(Math.random()*t.bursts.length)];
+      const el=document.createElement('span'); el.className='burst'; el.textContent=emoji;
+      const r=e.target.getBoundingClientRect();
+      el.style.left=(r.left+r.width/2-14)+'px'; el.style.top=(r.top+r.height/2-14)+'px';
+      document.body.appendChild(el); setTimeout(()=>el.remove(),650);
+    }
+
+    document.addEventListener('keydown',ev=>{
+      const f={target:document.querySelector('.calculator'),getBoundingClientRect:()=>({left:150,top:400,width:0,height:0})};
+      if(ev.key>='0'&&ev.key<='9') num(ev.key,f);
+      else if(ev.key==='.') dot(f);
+      else if(ev.key==='+') setOp('+',f);
+      else if(ev.key==='-') setOp('-',f);
+      else if(ev.key==='*') setOp('*',f);
+      else if(ev.key==='/'){ev.preventDefault();setOp('/',f);}
+      else if(ev.key==='Enter'||ev.key==='=') calculate(f);
+      else if(ev.key==='Escape') clearAll(f);
+    });
+  </script>
+</body>
+</html>
