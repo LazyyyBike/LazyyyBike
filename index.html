@@ -46,7 +46,9 @@
       --special-shadow: #7c3aed;
       --footer-color: #b07848;
       --toggle-bg: linear-gradient(135deg, #f472b6, #a78bfa);
-      --nose-show: block;
+      --popup-border: #8b5e3c;
+      --popup-bg: #fff8f0;
+      --popup-title: #8b5e3c;
     }
 
     body.femboy {
@@ -87,7 +89,9 @@
       --special-shadow: #7c3aed;
       --footer-color: #db2777;
       --toggle-bg: linear-gradient(135deg, #8b5e3c, #f4a261);
-      --nose-show: none;
+      --popup-border: #f472b6;
+      --popup-bg: #fff5fb;
+      --popup-title: #be185d;
     }
 
     body {
@@ -96,13 +100,10 @@
       background-image:
         radial-gradient(circle at 20% 20%, var(--bg2) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, var(--bg3) 0%, transparent 50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
       font-family: 'Nunito', sans-serif;
-      padding: 20px;
-      transition: background 0.5s;
+      padding: 20px; transition: background 0.5s;
     }
 
     .bg-float {
@@ -115,7 +116,97 @@
       100% { transform: translateY(-10vh) rotate(360deg); }
     }
 
-    /* ── Toggle button ── */
+    /* ══════════════════════════════════
+       WOLF POPUP
+    ══════════════════════════════════ */
+    #wolfBtn {
+      position: fixed;
+      top: 14px; left: 14px;
+      z-index: 100;
+      background: var(--popup-bg);
+      border: 3px solid var(--popup-border);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.95rem;
+      color: var(--popup-title);
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+      display: flex; align-items: center; gap: 6px;
+    }
+    #wolfBtn:hover { transform: scale(1.08); }
+    #wolfBtn:active { transform: scale(0.94); }
+
+    #wolfPopup {
+      position: fixed;
+      top: 62px; left: 14px;
+      z-index: 99;
+      background: var(--popup-bg);
+      border: 3px solid var(--popup-border);
+      border-radius: 20px;
+      padding: 12px;
+      width: 210px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      animation: popIn 0.3s cubic-bezier(.34,1.56,.64,1);
+    }
+    #wolfPopup.open { display: flex; }
+
+    @keyframes popIn {
+      0%   { transform: scale(0.7) translateY(-10px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    #wolfPopup .popup-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      color: var(--popup-title);
+    }
+
+    #wolfImg {
+      width: 100%; border-radius: 12px;
+      object-fit: cover;
+      min-height: 140px;
+      background: #eee;
+      transition: opacity 0.3s;
+    }
+
+    #wolfPopup .popup-actions {
+      display: flex; gap: 8px; width: 100%;
+    }
+
+    #wolfPopup button {
+      flex: 1; border: none; border-radius: 10px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.85rem; cursor: pointer;
+      padding: 7px 0;
+      transition: all 0.15s cubic-bezier(.34,1.56,.64,1);
+    }
+    #wolfPopup button:active { transform: scale(0.92); }
+
+    #newWolfBtn {
+      background: linear-gradient(135deg, var(--op-bg1), var(--op-bg2));
+      color: white;
+      box-shadow: 0 3px 0 var(--op-shadow);
+    }
+    #closePopupBtn {
+      background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+      color: #475569;
+      box-shadow: 0 3px 0 #94a3b8;
+    }
+
+    #wolfStatus {
+      font-size: 0.78rem;
+      color: var(--subtitle-color);
+      font-weight: 700;
+      min-height: 14px;
+    }
+
+    /* ══ Toggle ══ */
     .theme-toggle {
       position: relative; z-index: 10;
       margin-bottom: 18px;
@@ -127,7 +218,6 @@
       cursor: pointer;
       box-shadow: 0 4px 18px rgba(0,0,0,0.18);
       transition: all 0.35s cubic-bezier(.34,1.56,.64,1);
-      letter-spacing: 0.5px;
     }
     .theme-toggle:hover { transform: scale(1.07); }
     .theme-toggle:active { transform: scale(0.94); }
@@ -137,16 +227,13 @@
       position: relative; z-index: 1;
     }
     .title-area h1 {
-      font-family: 'Fredoka One', cursive;
-      font-size: 2.6rem;
-      color: var(--title-color);
-      text-shadow: 3px 3px 0 var(--title-shadow);
+      font-family: 'Fredoka One', cursive; font-size: 2.6rem;
+      color: var(--title-color); text-shadow: 3px 3px 0 var(--title-shadow);
       transition: color 0.4s, text-shadow 0.4s;
     }
     .title-area p {
-      color: var(--subtitle-color);
-      font-size: 0.95rem; font-weight: 700;
-      margin-top: 4px; transition: color 0.4s;
+      color: var(--subtitle-color); font-size: 0.95rem;
+      font-weight: 700; margin-top: 4px; transition: color 0.4s;
     }
 
     .ears {
@@ -155,20 +242,15 @@
       position: relative; z-index: 2;
     }
     .ear {
-      width: 56px; height: 56px;
-      background: var(--ear-color);
-      border-radius: 50% 50% 0 50%;
-      position: relative;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-      transition: background 0.4s;
+      width: 56px; height: 56px; background: var(--ear-color);
+      border-radius: 50% 50% 0 50%; position: relative;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: background 0.4s;
     }
     .ear.right { border-radius: 50% 50% 50% 0; }
     .ear::after {
       content: ''; position: absolute;
-      width: 32px; height: 32px;
-      background: var(--ear-inner);
-      border-radius: 50% 50% 0 50%;
-      top: 10px; left: 10px;
+      width: 32px; height: 32px; background: var(--ear-inner);
+      border-radius: 50% 50% 0 50%; top: 10px; left: 10px;
       transition: background 0.4s;
     }
     .ear.right::after { border-radius: 50% 50% 50% 0; }
@@ -184,8 +266,7 @@
     .nose {
       position: absolute; top: -13px; left: 50%;
       transform: translateX(-50%);
-      font-size: 1.4rem; display: var(--nose-show);
-      line-height: 1;
+      font-size: 1.4rem; line-height: 1;
     }
 
     .display {
@@ -195,20 +276,15 @@
       display: flex; flex-direction: column;
       justify-content: flex-end; align-items: flex-end;
       box-shadow: inset 0 4px 16px rgba(0,0,0,0.4);
-      overflow: hidden; position: relative;
-      transition: background 0.4s;
+      overflow: hidden; position: relative; transition: background 0.4s;
     }
     .display .expression {
-      color: var(--display-expr);
-      font-size: 0.82rem; font-weight: 600;
-      min-height: 16px; word-break: break-all;
-      transition: color 0.4s;
+      color: var(--display-expr); font-size: 0.82rem;
+      font-weight: 600; min-height: 16px; word-break: break-all; transition: color 0.4s;
     }
     .display .result {
-      color: var(--display-result);
-      font-family: 'Fredoka One', cursive;
-      font-size: 2.1rem; word-break: break-all;
-      transition: transform 0.1s, color 0.4s;
+      color: var(--display-result); font-family: 'Fredoka One', cursive;
+      font-size: 2.1rem; word-break: break-all; transition: transform 0.1s, color 0.4s;
     }
     .display .result.pop { transform: scale(1.06); }
 
@@ -229,14 +305,12 @@
       transition: background 0.4s, color 0.4s, box-shadow 0.4s, transform 0.12s;
     }
     .btn-num:hover { background: linear-gradient(145deg, var(--num-hover1), var(--num-hover2)); transform: translateY(-2px); }
-
     .btn-op {
       background: linear-gradient(145deg, var(--op-bg1), var(--op-bg2));
       color: white; box-shadow: 0 4px 0 var(--op-shadow), 0 5px 10px rgba(0,0,0,0.12);
       transition: background 0.4s, box-shadow 0.4s, transform 0.12s;
     }
     .btn-op:hover { background: linear-gradient(145deg, var(--op-hover1), var(--op-bg1)); transform: translateY(-2px); }
-
     .btn-eq {
       background: linear-gradient(145deg, var(--eq-bg1), var(--eq-bg2));
       color: var(--eq-color); font-size: 1.5rem;
@@ -244,7 +318,6 @@
       transition: background 0.4s, color 0.4s, box-shadow 0.4s, transform 0.12s;
     }
     .btn-eq:hover { transform: translateY(-2px); }
-
     .btn-clear {
       background: linear-gradient(145deg, var(--clear-bg1), var(--clear-bg2));
       color: white; font-size: 0.95rem;
@@ -252,7 +325,6 @@
       transition: background 0.4s, box-shadow 0.4s, transform 0.12s;
     }
     .btn-clear:hover { transform: translateY(-2px); }
-
     .btn-special {
       background: linear-gradient(145deg, var(--special-bg1), var(--special-bg2));
       color: white; font-size: 0.95rem;
@@ -260,13 +332,11 @@
       transition: background 0.4s, box-shadow 0.4s, transform 0.12s;
     }
     .btn-special:hover { transform: translateY(-2px); }
-
     .btn-zero { grid-column: span 2; }
 
     .tail {
       position: absolute; bottom: -28px; right: 28px;
-      font-size: 1.9rem;
-      animation: wiggle 2s ease-in-out infinite;
+      font-size: 1.9rem; animation: wiggle 2s ease-in-out infinite;
       transform-origin: left center;
     }
     @keyframes wiggle {
@@ -275,8 +345,7 @@
     }
 
     .burst {
-      position: fixed; font-size: 1.7rem;
-      pointer-events: none;
+      position: fixed; font-size: 1.7rem; pointer-events: none;
       animation: burstAnim 0.55s ease-out forwards; z-index: 999;
     }
     @keyframes burstAnim {
@@ -287,8 +356,7 @@
 
     .footer {
       margin-top: 22px; color: var(--footer-color);
-      font-size: 0.8rem; font-weight: 700; z-index: 1;
-      transition: color 0.4s;
+      font-size: 0.8rem; font-weight: 700; z-index: 1; transition: color 0.4s;
     }
   </style>
 </head>
@@ -299,6 +367,20 @@
   <span class="bg-float" id="f3" style="left:50%; animation-duration:14s; animation-delay:1s">🐾</span>
   <span class="bg-float" id="f4" style="left:75%; animation-duration:10s; animation-delay:5s">🐾</span>
   <span class="bg-float" id="f5" style="left:90%; animation-duration:11s; animation-delay:2s">🐾</span>
+
+  <!-- Wolf Popup Button -->
+  <button id="wolfBtn" onclick="togglePopup()">🐺 Wolf Bild</button>
+
+  <!-- Wolf Popup -->
+  <div id="wolfPopup">
+    <div class="popup-title">🐺 Wolf des Tages</div>
+    <img id="wolfImg" src="" alt="Wolf" />
+    <div id="wolfStatus">Lädt...</div>
+    <div class="popup-actions">
+      <button id="newWolfBtn" onclick="loadWolf()">🔄 Neu</button>
+      <button id="closePopupBtn" onclick="togglePopup()">✕ Schließen</button>
+    </div>
+  </div>
 
   <button class="theme-toggle" id="toggleBtn" onclick="toggleTheme()">🎀 Femboy Mode</button>
 
@@ -314,71 +396,99 @@
 
   <div class="calculator">
     <div class="nose" id="nose">🐽</div>
-
     <div class="display">
       <div class="expression" id="expression"></div>
       <div class="result"     id="result">0</div>
     </div>
-
     <div class="buttons">
       <button class="calc-btn btn-clear"   onclick="clearAll(event)">AC</button>
       <button class="calc-btn btn-special" onclick="toggleSign(event)">+/−</button>
       <button class="calc-btn btn-special" onclick="percent(event)">%</button>
       <button class="calc-btn btn-op"      onclick="setOp('/',event)">÷</button>
-
       <button class="calc-btn btn-num" onclick="num('7',event)">7</button>
       <button class="calc-btn btn-num" onclick="num('8',event)">8</button>
       <button class="calc-btn btn-num" onclick="num('9',event)">9</button>
       <button class="calc-btn btn-op"  onclick="setOp('*',event)">×</button>
-
       <button class="calc-btn btn-num" onclick="num('4',event)">4</button>
       <button class="calc-btn btn-num" onclick="num('5',event)">5</button>
       <button class="calc-btn btn-num" onclick="num('6',event)">6</button>
       <button class="calc-btn btn-op"  onclick="setOp('-',event)">−</button>
-
       <button class="calc-btn btn-num" onclick="num('1',event)">1</button>
       <button class="calc-btn btn-num" onclick="num('2',event)">2</button>
       <button class="calc-btn btn-num" onclick="num('3',event)">3</button>
       <button class="calc-btn btn-op"  onclick="setOp('+',event)">+</button>
-
       <button class="calc-btn btn-num btn-zero" onclick="num('0',event)">0</button>
       <button class="calc-btn btn-num"          onclick="dot(event)">.</button>
       <button class="calc-btn btn-eq"           onclick="calculate(event)">＝</button>
     </div>
-
     <div class="tail" id="tail">🦊</div>
   </div>
 
   <div class="footer" id="footer">Made with 🐾 for furry fans</div>
 
   <script>
-    let isFemboy = false;
+    // ── Wolf Popup ──────────────────────────
+    let popupOpen = false;
+    let wolfLoaded = false;
 
+    function togglePopup() {
+      popupOpen = !popupOpen;
+      const popup = document.getElementById('wolfPopup');
+      popup.classList.toggle('open', popupOpen);
+      if (popupOpen && !wolfLoaded) loadWolf();
+    }
+
+    async function loadWolf() {
+      const img    = document.getElementById('wolfImg');
+      const status = document.getElementById('wolfStatus');
+      img.style.opacity = '0.4';
+      status.textContent = 'Lädt...';
+      try {
+        const res  = await fetch('https://sheri.bot/api/wolves');
+        const data = await res.json();
+        // API returns { url: "..." } or similar
+        const url  = data.url || data.image || data.file || (Array.isArray(data) ? data[0] : null);
+        if (url) {
+          img.onload = () => { img.style.opacity = '1'; status.textContent = '🐺 awoo~'; };
+          img.onerror = () => { status.textContent = '⚠️ Bild fehler'; img.style.opacity = '1'; };
+          img.src = url;
+          wolfLoaded = true;
+        } else {
+          status.textContent = '⚠️ Kein Bild gefunden';
+          img.style.opacity = '1';
+        }
+      } catch(err) {
+        status.textContent = '⚠️ API nicht erreichbar';
+        img.style.opacity = '1';
+        img.src = '';
+      }
+    }
+
+    // ── Theme ───────────────────────────────
+    let isFemboy = false;
     const T = {
-      furry:  { btn:'🎀 Femboy Mode', title:'🐾 Furry Rechner', sub:'Rechnen macht Spaß, arf arf! 🦊', tail:'🦊', nose:'🐽', footer:'Made with 🐾 for furry fans',  floats:['🐾','🦊','🐺','🦝','🐱'], bursts:['🐾','🦊','🐺','🦝','🐱'] },
-      femboy: { btn:'🐾 Furry Mode',  title:'🎀 Femboy Rechner', sub:'Kawaii math time~ 💕✨',          tail:'🎀', nose:'🎀', footer:'Made with 💕 for femboy fans', floats:['🎀','💕','✨','🌸','💜'], bursts:['🎀','💕','✨','🌸','💜','🫧'] }
+      furry:  { btn:'🎀 Femboy Mode', title:'🐾 Furry Rechner', sub:'Rechnen macht Spaß, arf arf! 🦊', tail:'🦊', nose:'🐽', footer:'Made with 🐾 for furry fans',  wolfBtn:'🐺 Wolf Bild', floats:['🐾','🦊','🐺','🦝','🐱'], bursts:['🐾','🦊','🐺','🦝','🐱'] },
+      femboy: { btn:'🐾 Furry Mode',  title:'🎀 Femboy Rechner', sub:'Kawaii math time~ 💕✨',          tail:'🎀', nose:'🎀', footer:'Made with 💕 for femboy fans', wolfBtn:'🐺 Wolf Bild', floats:['🎀','💕','✨','🌸','💜'], bursts:['🎀','💕','✨','🌸','💜','🫧'] }
     };
 
     function toggleTheme() {
       isFemboy = !isFemboy;
       const t = isFemboy ? T.femboy : T.furry;
       document.body.className = isFemboy ? 'femboy' : 'furry';
-      document.getElementById('toggleBtn').textContent = t.btn;
-      document.getElementById('mainTitle').textContent = t.title;
-      document.getElementById('mainSub').textContent   = t.sub;
-      document.getElementById('tail').textContent      = t.tail;
-      document.getElementById('nose').textContent      = t.nose;
-      document.getElementById('footer').textContent    = t.footer;
+      document.getElementById('toggleBtn').textContent  = t.btn;
+      document.getElementById('mainTitle').textContent  = t.title;
+      document.getElementById('mainSub').textContent    = t.sub;
+      document.getElementById('tail').textContent       = t.tail;
+      document.getElementById('nose').textContent       = t.nose;
+      document.getElementById('footer').textContent     = t.footer;
       ['f1','f2','f3','f4','f5'].forEach((id,i) =>
         document.getElementById(id).textContent = t.floats[i % t.floats.length]);
     }
 
-    // ── Calc logic ──
+    // ── Calc ────────────────────────────────
     let current='0', stored=null, operator=null, justCalc=false, expression='';
     const resultEl=document.getElementById('result'), exprEl=document.getElementById('expression');
-
     function updateDisplay(){ resultEl.textContent=current; exprEl.textContent=expression; }
-
     function num(n,e){ spawn(e); if(justCalc){current=n;expression='';justCalc=false;}else current=current==='0'?n:current+n; updateDisplay(); }
     function dot(e){ spawn(e); if(justCalc){current='0.';justCalc=false;}else if(!current.includes('.'))current+='.'; updateDisplay(); }
     function setOp(op,e){
@@ -402,28 +512,7 @@
     function clearAll(e){ spawn(e); current='0';stored=null;operator=null;justCalc=false;expression=''; updateDisplay(); }
     function toggleSign(e){ spawn(e); current=String(parseFloat(current)*-1); updateDisplay(); }
     function percent(e){ spawn(e); current=String(parseFloat(current)/100); updateDisplay(); }
-
     function spawn(e){
       if(!e)return;
       const t=isFemboy?T.femboy:T.furry;
-      const emoji=t.bursts[Math.floor(Math.random()*t.bursts.length)];
-      const el=document.createElement('span'); el.className='burst'; el.textContent=emoji;
-      const r=e.target.getBoundingClientRect();
-      el.style.left=(r.left+r.width/2-14)+'px'; el.style.top=(r.top+r.height/2-14)+'px';
-      document.body.appendChild(el); setTimeout(()=>el.remove(),650);
-    }
-
-    document.addEventListener('keydown',ev=>{
-      const f={target:document.querySelector('.calculator'),getBoundingClientRect:()=>({left:150,top:400,width:0,height:0})};
-      if(ev.key>='0'&&ev.key<='9') num(ev.key,f);
-      else if(ev.key==='.') dot(f);
-      else if(ev.key==='+') setOp('+',f);
-      else if(ev.key==='-') setOp('-',f);
-      else if(ev.key==='*') setOp('*',f);
-      else if(ev.key==='/'){ev.preventDefault();setOp('/',f);}
-      else if(ev.key==='Enter'||ev.key==='=') calculate(f);
-      else if(ev.key==='Escape') clearAll(f);
-    });
-  </script>
-</body>
-</html>
+      const emoji=t.bursts[Math.floor(Math.ra
