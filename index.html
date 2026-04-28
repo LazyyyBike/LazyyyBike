@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🐾 Furry Rechner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --fur-orange: #f4a261;
+      --fur-brown: #8b5e3c;
+      --fur-cream: #fdf3e7;
+      --fur-dark: #3d1f0a;
+      --fur-pink: #f9a8d4;
+      --fur-purple: #c084fc;
+      --fur-green: #86efac;
+      --fur-blue: #7dd3fc;
+      --shadow: 0 8px 32px rgba(61,31,10,0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: var(--fur-cream);
+      background-image:
+        radial-gradient(circle at 20% 20%, #fde68a55 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, #f9a8d455 0%, transparent 50%),
+        radial-gradient(circle at 60% 10%, #c084fc33 0%, transparent 40%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Nunito', sans-serif;
+      padding: 20px;
+    }
+
+    /* Floating paw prints */
+    .paw-bg {
+      position: fixed;
+      pointer-events: none;
+      opacity: 0.07;
+      font-size: 3rem;
+      animation: floatPaw linear infinite;
+      z-index: 0;
+    }
+    @keyframes floatPaw {
+      0% { transform: translateY(110vh) rotate(0deg); }
+      100% { transform: translateY(-10vh) rotate(360deg); }
+    }
+
+    .title-area {
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .title-area h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.8rem;
+      color: var(--fur-brown);
+      text-shadow: 3px 3px 0 #f4a26155;
+      letter-spacing: 1px;
+    }
+
+    .title-area p {
+      color: #a0704a;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    /* Ears */
+    .ears {
+      display: flex;
+      justify-content: space-between;
+      width: 300px;
+      margin-bottom: -18px;
+      position: relative;
+      z-index: 2;
+    }
+    .ear {
+      width: 60px;
+      height: 60px;
+      background: var(--fur-brown);
+      border-radius: 50% 50% 0 50%;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+    .ear.right {
+      border-radius: 50% 50% 50% 0;
+    }
+    .ear::after {
+      content: '';
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      background: var(--fur-pink);
+      border-radius: 50% 50% 0 50%;
+      top: 10px;
+      left: 10px;
+    }
+    .ear.right::after {
+      border-radius: 50% 50% 50% 0;
+    }
+
+    .calculator {
+      background: linear-gradient(145deg, #fff8f0, #fef3e2);
+      border-radius: 28px;
+      padding: 24px;
+      width: 300px;
+      box-shadow:
+        0 20px 60px rgba(61,31,10,0.2),
+        0 0 0 4px var(--fur-brown),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Nose decoration */
+    .nose {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 20px;
+      background: var(--fur-brown);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Display */
+    .display {
+      background: linear-gradient(135deg, #3d1f0a, #6b3a1f);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      box-shadow: inset 0 4px 16px rgba(0,0,0,0.4), 0 2px 0 rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .display::before {
+      content: '🐾';
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      font-size: 1.2rem;
+      opacity: 0.3;
+    }
+
+    .display .expression {
+      color: #c9956a;
+      font-size: 0.85rem;
+      font-weight: 600;
+      min-height: 18px;
+      word-break: break-all;
+    }
+
+    .display .result {
+      color: #fdf3e7;
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      word-break: break-all;
+      transition: transform 0.1s;
+    }
+
+    .display .result.pop {
+      transform: scale(1.05);
+    }
+
+    /* Buttons grid */
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      border-radius: 14px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      cursor: pointer;
+      height: 58px;
+      transition: all 0.12s cubic-bezier(.34,1.56,.64,1);
+      position: relative;
+      outline: none;
+    }
+
+    button:active {
+      transform: scale(0.91) translateY(2px);
+    }
+
+    /* Number buttons */
+    .btn-num {
+      background: linear-gradient(145deg, #fff4e8, #ffe8cc);
+      color: var(--fur-dark);
+      box-shadow: 0 4px 0 #d4955a, 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .btn-num:hover {
+      background: linear-gradient(145deg, #fff8f0, #ffd8a8);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #d4955a, 0 8px 16px rgba(0,0,0,0.12);
+    }
+
+    /* Operator buttons */
+    .btn-op {
+      background: linear-gradient(145deg, var(--fur-orange), #e07d3a);
+      color: white;
+      box-shadow: 0 4px 0 #b5581a, 0 6px 12px rgba(0,0,0,0.15);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    .btn-op:hover {
+      background: linear-gradient(145deg, #f5b068, var(--fur-orange));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #b5581a, 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    /* Equals button */
+    .btn-eq {
+      background: linear-gradient(145deg, var(--fur-brown), #6b3a1f);
+      color: var(--fur-cream);
+      box-shadow: 0 4px 0 #2d1205, 0 6px 12px rgba(0,0,0,0.2);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      font-size: 1.6rem;
+    }
+    .btn-eq:hover {
+      background: linear-gradient(145deg, #a07050, var(--fur-brown));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #2d1205, 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    /* Clear button */
+    .btn-clear {
+      background: linear-gradient(145deg, #fda4af, #fb7185);
+      color: white;
+      box-shadow: 0 4px 0 #d4405a, 0 6px 12px rgba(0,0,0,0.12);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      font-size: 1rem;
+    }
+    .btn-clear:hover {
+      background: linear-gradient(145deg, #fecdd3, #fda4af);
+      transform: translateY(-2px);
+    }
+
+    /* Special buttons */
+    .btn-special {
+      background: linear-gradient(145deg, #c4b5fd, #a78bfa);
+      color: white;
+      box-shadow: 0 4px 0 #7c3aed, 0 6px 12px rgba(0,0,0,0.12);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      font-size: 1rem;
+    }
+    .btn-special:hover {
+      background: linear-gradient(145deg, #ddd6fe, #c4b5fd);
+      transform: translateY(-2px);
+    }
+
+    .btn-zero {
+      grid-column: span 2;
+    }
+
+    /* Paw emoji that appears on press */
+    .paw-burst {
+      position: fixed;
+      font-size: 1.8rem;
+      pointer-events: none;
+      animation: pawBurst 0.6s ease-out forwards;
+      z-index: 999;
+    }
+    @keyframes pawBurst {
+      0% { transform: scale(0) rotate(-20deg); opacity: 1; }
+      60% { transform: scale(1.3) rotate(10deg); opacity: 1; }
+      100% { transform: scale(1.6) rotate(5deg) translateY(-30px); opacity: 0; }
+    }
+
+    /* Tail wiggle */
+    .tail {
+      position: absolute;
+      bottom: -30px;
+      right: 30px;
+      font-size: 2rem;
+      animation: wiggle 2s ease-in-out infinite;
+      transform-origin: left center;
+      z-index: 0;
+    }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-15deg); }
+      50% { transform: rotate(15deg); }
+    }
+
+    .footer {
+      margin-top: 20px;
+      color: #b07848;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating paw prints -->
+  <span class="paw-bg" style="left:5%; animation-duration:12s; animation-delay:0s;">🐾</span>
+  <span class="paw-bg" style="left:20%; animation-duration:9s; animation-delay:3s;">🐾</span>
+  <span class="paw-bg" style="left:50%; animation-duration:14s; animation-delay:1s;">🐾</span>
+  <span class="paw-bg" style="left:75%; animation-duration:10s; animation-delay:5s;">🐾</span>
+  <span class="paw-bg" style="left:90%; animation-duration:11s; animation-delay:2s;">🐾</span>
+
+  <div class="title-area">
+    <h1>🐾 Furry Rechner</h1>
+    <p>Rechnen macht Spaß, arf arf! 🦊</p>
+  </div>
+
+  <div class="ears">
+    <div class="ear left"></div>
+    <div class="ear right"></div>
+  </div>
+
+  <div class="calculator">
+    <div class="nose"></div>
+
+    <div class="display">
+      <div class="expression" id="expression"></div>
+      <div class="result" id="result">0</div>
+    </div>
+
+    <div class="buttons">
+      <button class="btn-clear" onclick="clearAll()">AC</button>
+      <button class="btn-special" onclick="toggleSign()">+/-</button>
+      <button class="btn-special" onclick="percent()">%</button>
+      <button class="btn-op" onclick="setOp('/')">÷</button>
+
+      <button class="btn-num" onclick="num('7')">7</button>
+      <button class="btn-num" onclick="num('8')">8</button>
+      <button class="btn-num" onclick="num('9')">9</button>
+      <button class="btn-op" onclick="setOp('*')">×</button>
+
+      <button class="btn-num" onclick="num('4')">4</button>
+      <button class="btn-num" onclick="num('5')">5</button>
+      <button class="btn-num" onclick="num('6')">6</button>
+      <button class="btn-op" onclick="setOp('-')">−</button>
+
+      <button class="btn-num" onclick="num('1')">1</button>
+      <button class="btn-num" onclick="num('2')">2</button>
+      <button class="btn-num" onclick="num('3')">3</button>
+      <button class="btn-op" onclick="setOp('+')">+</button>
+
+      <button class="btn-num btn-zero" onclick="num('0')">0</button>
+      <button class="btn-num" onclick="dot()">.</button>
+      <button class="btn-eq" onclick="calculate()">＝</button>
+    </div>
+
+    <div class="tail">🦊</div>
+  </div>
+
+  <div class="footer">Made with 🐾 for furry fans</div>
+
+  <script>
+    let current = '0';
+    let stored = null;
+    let operator = null;
+    let justCalc = false;
+    let expression = '';
+
+    const resultEl = document.getElementById('result');
+    const exprEl = document.getElementById('expression');
+
+    function updateDisplay() {
+      resultEl.textContent = current;
+      exprEl.textContent = expression;
+    }
+
+    function num(n) {
+      spawnPaw(event);
+      if (justCalc) { current = n; expression = ''; justCalc = false; }
+      else if (current === '0') current = n;
+      else current += n;
+      updateDisplay();
+    }
+
+    function dot() {
+      spawnPaw(event);
+      if (justCalc) { current = '0.'; justCalc = false; }
+      else if (!current.includes('.')) current += '.';
+      updateDisplay();
+    }
+
+    function setOp(op) {
+      spawnPaw(event);
+      const opSymbols = { '+': '+', '-': '−', '*': '×', '/': '÷' };
+      if (stored !== null && !justCalc) {
+        stored = parseFloat(eval(stored + operator + current).toFixed(10));
+      } else {
+        stored = parseFloat(current);
+      }
+      operator = op;
+      expression = stored + ' ' + opSymbols[op];
+      justCalc = true;
+      updateDisplay();
+    }
+
+    function calculate() {
+      spawnPaw(event);
+      if (stored === null || operator === null) return;
+      const opSymbols = { '+': '+', '-': '−', '*': '×', '/': '÷' };
+      const prev = stored;
+      const cur = parseFloat(current);
+      let res;
+      if (operator === '/' && cur === 0) { current = 'OwO Fehler!'; stored = null; operator = null; expression = ''; updateDisplay(); return; }
+      res = parseFloat(eval(prev + operator + cur).toFixed(10));
+      expression = prev + ' ' + opSymbols[operator] + ' ' + cur + ' =';
+      current = String(res);
+      stored = null;
+      operator = null;
+      justCalc = true;
+      pop();
+      updateDisplay();
+    }
+
+    function clearAll() {
+      spawnPaw(event);
+      current = '0'; stored = null; operator = null; justCalc = false; expression = '';
+      updateDisplay();
+    }
+
+    function toggleSign() {
+      spawnPaw(event);
+      current = String(parseFloat(current) * -1);
+      updateDisplay();
+    }
+
+    function percent() {
+      spawnPaw(event);
+      current = String(parseFloat(current) / 100);
+      updateDisplay();
+    }
+
+    function pop() {
+      resultEl.classList.add('pop');
+      setTimeout(() => resultEl.classList.remove('pop'), 150);
+    }
+
+    function spawnPaw(e) {
+      if (!e) return;
+      const el = document.createElement('span');
+      el.className = 'paw-burst';
+      el.textContent = ['🐾','🦊','🐺','🦝','🐱'][Math.floor(Math.random()*5)];
+      const rect = e.target.getBoundingClientRect();
+      el.style.left = (rect.left + rect.width/2 - 16) + 'px';
+      el.style.top = (rect.top + rect.height/2 - 16) + 'px';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 700);
+    }
+
+    // Keyboard support
+    document.addEventListener('keydown', e => {
+      const fakeEvent = { target: document.querySelector('.calculator'), getBoundingClientRect: () => ({left: 150, top: 400, width: 0, height: 0}) };
+      if (e.key >= '0' && e.key <= '9') num(e.key);
+      else if (e.key === '.') dot();
+      else if (e.key === '+') setOp('+');
+      else if (e.key === '-') setOp('-');
+      else if (e.key === '*') setOp('*');
+      else if (e.key === '/') { e.preventDefault(); setOp('/'); }
+      else if (e.key === 'Enter' || e.key === '=') calculate();
+      else if (e.key === 'Escape') clearAll();
+    });
+  </script>
+</body>
+</html>
